@@ -2,7 +2,7 @@
 import blog1 from "../assets/prueba1.jpg";
 import blog2 from "../assets/prueba1.jpg";
 import blog3 from "../assets/prueba1.jpg";
-
+import Footer from '../components/Footer';
 export default function Blog() {
   const posts = [
     {
@@ -29,7 +29,8 @@ export default function Blog() {
   ];
 
   return (
-    <section className="py-16 bg-gray-100" id="blog">
+    <>
+    <section className="py-25 bg-gray-100" id="blog">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-4">Blog de Barbería</h2>
         <p className="text-center text-gray-600 mb-10">
@@ -50,5 +51,7 @@ export default function Blog() {
         </div>
       </div>
     </section>
+    <Footer/>
+    </>
   );
 }

@@ -70,7 +70,7 @@ export default function Home() {
               </h3>
               <p className="text-base px-2 text-gray-600 mb-4">{servicio.desc}</p>
               <Link
-              to="/Servicios"
+              to="/servicios"
               className="flex items-center gap-2 text-white bg-yellow-600 hover:bg-yellow-700 px-5 py-2 rounded-full font-medium"
               >
               <ArrowRight className="w-5 h-5" />
