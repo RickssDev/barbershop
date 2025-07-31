@@ -20,19 +20,19 @@ export default function Servicios() {
       img: Afeitado,
     },
     {
-      nombre: "Afeitado Completo",
+      nombre: "Afeitado",
       precio: "120.00$",
       duracion: "25 min",
       img: Clasico,
     },
     {
-      nombre: "Afeitado Completo",
+      nombre: "gasg",
       precio: "120.00$",
       duracion: "25 min",
       img: Clasico,
     },
     {
-      nombre: "Afeitado Completo",
+      nombre: "gawgag",
       precio: "120.00$",
       duracion: "25 min",
       img: Clasico,
@@ -71,7 +71,7 @@ export default function Servicios() {
                 <p className="text-gray-600 text-sm sm:text-base">{servicio.duracion}</p>
             </div>
             <Link
-                to="/reservar"
+                to="/reservas"
                 className="bg-yellow-600 text-white px-4 py-1 rounded text-sm hover:bg-yellow-700 whitespace-nowrap"
             >
                 Reservar

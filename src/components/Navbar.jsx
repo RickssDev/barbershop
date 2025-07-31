@@ -80,7 +80,7 @@ export default function Navbar() {
             </li>
           </ul>
           <Link
-            to="/reservar"
+            to="/reservas"
             className="px-5 py-2 border-1 text-black rounded border-white/40 bg-yellow-600 hover:bg-yellow-600/70 hover:text-black transition"
           >
             Reservar

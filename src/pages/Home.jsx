@@ -38,21 +38,21 @@ export default function Home() {
               img:Fade,
             },
             {
-              nombre: "Afeitado Completo",
+              nombre: "Afeitado",
               desc: "Afeitado al ras con toalla caliente y cuidado facial.",
               img:Afeitado,
             },
             {
-              nombre: "Corte Clásico",
+              nombre: "ff",
               desc: "Un corte tradicional y limpio para cualquier ocasión.",
               
             },
             {
-              nombre: "Fade Profesional",
+              nombre: "cc",
               desc: "Degradado preciso con estilo moderno y elegante.",
             },
             {
-              nombre: "Afeitado Completo",
+              nombre: "aslgknasj",
               desc: "Afeitado al ras con toalla caliente y cuidado facial.",
             },
           ].map((servicio, i) => (
