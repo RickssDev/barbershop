@@ -11,13 +11,20 @@ export default function ReservaForm() {
   const [email, setEmail] = useState('');
   const [fecha, setFecha] = useState('');
   const [hora, setHora] = useState('');
-  const [servicio, setServicio] = useState('');
+  const [servicios, setServicios] = useState([]);
   const [comentario, setComentario] = useState('');
+  const [servicioSeleccionado, setServicioSeleccionado] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [horasOcupadas, setHorasOcupadas] = useState ([]);
 
-  const servicios = ['Corte Clasico', 'Afeitado', 'Corte y Afeitado', 'Barba'];
+
+
+  useEffect(() => {
+  axios.get("http://localhost:3000/api/cortes")
+    .then(res => setServicios(res.data))
+    .catch(err => console.error("Error al cargar servicios:", err));
+  }, []);
 
     // se activa solo si hay fecha seleccionada
     useEffect(() => {
@@ -26,6 +33,8 @@ export default function ReservaForm() {
       setHora('');
       return;
     }
+
+    
 
     async function fetchHorasOcupadas() {
       try {
@@ -60,7 +69,7 @@ export default function ReservaForm() {
         email,
         fecha,
         hora,
-        servicio,
+        servicio: servicioSeleccionado,
         comentario,
       });
 
@@ -69,7 +78,7 @@ export default function ReservaForm() {
       setEmail('');
       setFecha('');
       setHora('');
-      setServicio('');
+      setServicioSeleccionado('');
       setComentario('');
       setHorasOcupadas([]);
     } catch (err) {
@@ -142,17 +151,19 @@ export default function ReservaForm() {
 
         <label className="block mb-2 font-semibold" htmlFor="servicio">Servicio *</label>
         <select
-          id="servicio"
-          value={servicio}
-          onChange={(e) => setServicio(e.target.value)}
-          className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring focus:ring-blue-200"
-          required
-        >
-          <option value="">Selecciona un servicio</option>
-          {servicios.map((s) => (
-            <option key={s} value={s}>{s}</option>
-          ))}
-        </select>
+        id="servicio"
+        value={servicioSeleccionado}
+        onChange={(e) => setServicioSeleccionado(e.target.value)}
+        className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring focus:ring-blue-200"
+        required
+      >
+        <option value="">Selecciona un servicio</option>
+        {servicios.map((s) => (
+          <option key={s.id} value={s.nombre}>{s.nombre}</option>
+        ))}
+      </select>
+
+
 
         <label className="block mb-2 font-semibold" htmlFor="comentario">Comentario (opcional)</label>
         <textarea

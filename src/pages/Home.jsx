@@ -12,13 +12,26 @@ import Fade from "../assets/fade_normal.jpg";
 import Afeitado from "../assets/afeitado.jpg";
 import { Link } from "react-router-dom";
 import "../index.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+
 export default function Home() {
+
+    const [cortes, setCortes] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/cortes")
+      .then(res => setCortes(res.data))
+      .catch(err => console.error("Error al cargar cortes:", err));
+  }, []);
+
   return (
     <div className="relative bg-black/95 text-white min-h-screen">
       <img
         src={bImage}
         alt="Barbería"
-        className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
+        className="w-full h-[300px] sm:h-[500px] md:h-[700px] object-cover"
       />
       <div className="pt-[px]">
       <section className="bg-white py-16 px-6">
@@ -26,58 +39,32 @@ export default function Home() {
           Nuestros Servicios
         </h2>
         <div className="flex flex-wrap justify-center gap-15">
-          {[
-            {
-              nombre: "Corte Clásico",
-              desc: "Un corte tradicional y limpio para cualquier ocasión.",
-              img:Clasico,
-            },
-            {
-              nombre: "Fade Profesional",
-              desc: "Degradado preciso con estilo moderno y elegante.",
-              img:Fade,
-            },
-            {
-              nombre: "Afeitado",
-              desc: "Afeitado al ras con toalla caliente y cuidado facial.",
-              img:Afeitado,
-            },
-            {
-              nombre: "ff",
-              desc: "Un corte tradicional y limpio para cualquier ocasión.",
-              
-            },
-            {
-              nombre: "cc",
-              desc: "Degradado preciso con estilo moderno y elegante.",
-            },
-            {
-              nombre: "aslgknasj",
-              desc: "Afeitado al ras con toalla caliente y cuidado facial.",
-            },
-          ].map((servicio, i) => (
-            <div
-              key={i}
-              className="bg-white border border-gray-200 rounded-xl shadow-md w-90 px-8 py-20 flex flex-col items-center text-center hover:shadow-lg transition duration-300 hover:scale-95 hover:translate-y-[2px]"
-            >
-              <img
-                src={servicio.img}
-                alt={servicio.nombre}
-                className="w-60 h-60 object-cover rounded-full shadow-sm mb-4 border-2 border-gray-300"
-              />
-              <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-                {servicio.nombre}
-              </h3>
-              <p className="text-base px-2 text-gray-600 mb-4">{servicio.desc}</p>
-              <Link
-              to="/servicios"
-              className="flex items-center gap-2 text-white bg-yellow-600 hover:bg-yellow-700 px-5 py-2 rounded-full font-medium"
-              >
-              <ArrowRight className="w-5 h-5" />
-              </Link>
+          {cortes.map((servicio, i) => (
+  <div
+    key={i}
+    className="bg-white border border-gray-200 rounded-xl shadow-md w-80 px-8 py-10 flex flex-col items-center text-center hover:shadow-lg transition duration-300 hover:scale-95 hover:translate-y-[2px]"
+  >
+    <img
+      src={servicio.imagen}
+      alt={servicio.nombre}
+      className="w-60 h-60 object-cover rounded-full shadow-sm mb-4 border-2 border-gray-300"
+    />
+    <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+      {servicio.nombre}
+    </h3>
+    <p className="text-base px-2 text-gray-600 mb-4 text-ellipsis overflow-hidden line-clamp-2">
+      {servicio.descripcion}
+    </p>
+    <Link
+      to="/servicios"
+      className="flex items-center gap-2 text-white bg-yellow-600 hover:bg-yellow-700 px-5 py-2 rounded-full font-medium mt-8"
+    >
+      <ArrowRight className="w-5 h-5" />
+    </Link>
+  </div>
+))}
 
-            </div>
-          ))}
+
         </div>
       </section>
     </div>
