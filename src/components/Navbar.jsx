@@ -9,6 +9,10 @@ export default function Navbar() {
   const [hideTopBar, setHideTopBar] = useState(false);
   const location = useLocation(); 
 
+  if(location.pathname.includes("admin")){
+    return null;
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollThreshold = 50;
